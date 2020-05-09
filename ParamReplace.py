@@ -50,19 +50,16 @@ class param_replace():
 
 	def param_change(self,url):
 
-		decode = urllib.parse.unquote(urllib.parse.unquote(urllib.parse.unquote(url)))
+		param_list = []
+		
+		parse = list(urllib.parse.parse_qs(url).keys())
+		
+		alone_param = parse[0] + self.param_name
+		
+		for x in parse:
+			param_list.append(x + self.param_name)
 
-		find_black_params = re.findall("https://|http://",decode)
-
-		if len(find_black_params) > 1:
-
-			url = url[:url.index(find_black_params[1],1)]
-
-
-		alone_param = re.sub("=.*$",self.param_name,url)
-
-		multi_param = re.sub("=([a-zA-Z0-9])*",self.param_name,url)
-
+		multi_param = ("&").join(param_list)
 
 		if args.method == "1":
 
