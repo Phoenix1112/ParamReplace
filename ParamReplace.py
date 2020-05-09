@@ -49,17 +49,33 @@ class param_replace():
 
 
 	def param_change(self,url):
+		
+		url = url.replace("=&","=1&")
+		
+		if url.endswith("="):
+			url = str(url) + "1"
 
 		param_list = []
 		
 		parse = list(urllib.parse.parse_qs(url).keys())
 		
-		alone_param = parse[0] + self.param_name
+		if not parse:
+			pass
 		
-		for x in parse:
-			param_list.append(x + self.param_name)
+		else:
+		
+			alone_param = parse[0] + self.param_name
+		
+			for x in parse:
+				param_list.append(x + self.param_name)
 
-		multi_param = ("&").join(param_list)
+			multi_param = ("&").join(param_list)
+			self.edit(alone_param,multi_param,url)
+
+	def edit(self,alone_param,multi_param,url):
+		
+		alone_param = alone_param.replace(" ", "%20")
+		multi_param = multi_param.replace(" ", "%20")
 
 		if args.method == "1":
 
