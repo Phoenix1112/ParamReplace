@@ -61,7 +61,7 @@ class param_replace():
 		
 		parse = list(urllib.parse.parse_qs(url).keys())
 		
-		if not parse or not "https://" in parse and not "http://" in parse:
+		if not parse:
 			pass
 		
 		else:
@@ -72,7 +72,9 @@ class param_replace():
 				param_list.append(x + self.param_name)
 
 			multi_param = ("&").join(param_list)
-			self.edit(alone_param,multi_param,url)
+			
+			if ("https://" in alone_param or "http://" in alone_param) or ("https://" in multi_param or "http://" in multi_param):
+				self.edit(alone_param,multi_param,url)
 
 	def edit(self,alone_param,multi_param,url):
 
