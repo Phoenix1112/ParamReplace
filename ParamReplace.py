@@ -4,6 +4,8 @@ import sys
 import argparse
 import urllib.parse
 from colorama import *
+from requests.utils import requote_uri
+
 
 class param_replace():
 
@@ -74,8 +76,8 @@ class param_replace():
 
 	def edit(self,alone_param,multi_param,url):
 		
-		alone_param = alone_param.replace(" ", "%20")
-		multi_param = multi_param.replace(" ", "%20")
+		alone_param = requote_uri(alone_param)
+		multi_param = requote_uri(multi_param)
 
 		if args.method == "1":
 
