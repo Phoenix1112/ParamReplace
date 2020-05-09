@@ -58,12 +58,12 @@ class param_replace():
 
 			url = url[:url.index(find_black_params[1],1)]
 
-		
+
 		alone_param = re.sub("=.*$",self.param_name,url)
 
 		multi_param = re.sub("=([a-zA-Z0-9])*",self.param_name,url)
 
-		
+
 		if args.method == "1":
 
 			if not alone_param in self.total_url:
@@ -141,7 +141,7 @@ if __name__ == "__main__":
 
 	ap.add_argument("-l", "--list", metavar="", required=False, help="READ URLS FROM LIST")
 	ap.add_argument("-s", "--stdin", action="store_true", required=False, help="READ URLS FROM STDIN")
-	ap.add_argument("-m", "--method", default="1", type=str, metavar="", required=False, help="PARAMETER PARSING METHOD(DEFAULT-3)")
+	ap.add_argument("-m", "--method", default="3", type=str, metavar="", required=False, help="PARAMETER PARSING METHOD(DEFAULT-3)")
 	ap.add_argument("-p", "--param", default="FUZZ", type=str, metavar="", required=False, help="PARAM NAME(DEFAULT-FUZZ)")
 	ap.add_argument("-o", "--output", metavar="", required=False, help="Save Output")
 
