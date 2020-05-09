@@ -36,12 +36,12 @@ class param_replace():
 
 			with open(args.list, "r", encoding="utf-8") as f:
 
-				[self.param_change(x) for x in f.read().split("\n") if x and "=" in str(x)]
+				[self.param_change(x) for x in f.read().split("\n") if x and "=" in str(x) and "https://" in str(x) or "http://" in str(x)]
 
 
 		elif args.stdin and not args.list:
 
-			[self.param_change(x) for x in sys.stdin.read().split("\n") if x and "=" in str(x)]
+			[self.param_change(x) for x in sys.stdin.read().split("\n") if x and "=" in str(x) and "https://" in str(x) or "http://" in str(x)]
 
 		else:
 
