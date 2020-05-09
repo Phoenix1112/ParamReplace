@@ -36,12 +36,12 @@ class param_replace():
 
 			with open(args.list, "r", encoding="utf-8") as f:
 
-				[self.param_change(x) for x in f.read().split("\n") if x and "=" in str(x) and "https://" in str(x) or "http://" in str(x)]
+				[self.param_change(x) for x in f.read().split("\n") if x and "=" in str(x)]
 
 
 		elif args.stdin and not args.list:
 
-			[self.param_change(x) for x in sys.stdin.read().split("\n") if x and "=" in str(x) and "https://" in str(x) or "http://" in str(x)]
+			[self.param_change(x) for x in sys.stdin.read().split("\n") if x and "=" in str(x)]
 
 		else:
 
@@ -51,9 +51,9 @@ class param_replace():
 
 
 	def param_change(self,url):
-		
+
 		url = url.replace("=&","=1&")
-		
+
 		if url.endswith("="):
 			url = str(url) + "1"
 
@@ -61,7 +61,7 @@ class param_replace():
 		
 		parse = list(urllib.parse.parse_qs(url).keys())
 		
-		if not parse:
+		if not parse or not "https://" in parse and not "http://" in parse:
 			pass
 		
 		else:
@@ -75,7 +75,7 @@ class param_replace():
 			self.edit(alone_param,multi_param,url)
 
 	def edit(self,alone_param,multi_param,url):
-		
+
 		alone_param = requote_uri(alone_param)
 		multi_param = requote_uri(multi_param)
 
