@@ -30,7 +30,7 @@ class param_replace():
 
 			if not os.path.exists(args.list):
 
-				print(Fore.MAGENTA+"URL LIST NOT FOUND: {args.list}")
+				print(Fore.MAGENTA+f"URL LIST NOT FOUND: {args.list}")
 
 				sys.exit()
 
